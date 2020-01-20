@@ -1,6 +1,4 @@
-# Bisection
-
-Copyright (c) 2020 Lee R. Burchett
+/*Copyright (c) 2020 Lee R. Burchett
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -18,9 +16,21 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+SOFTWARE.*/
 
-A library for using bisection to perform function inversion.
+#include "bisection.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-The idea of this library to to create a reasonably portable method for performing bisection. 
+double my_funct(double x, void *null_args){
+  return -2.0*x + 1000;
+}
 
+int main(){
+  double y0 = 5.0;
+  double x[N_A] = {0.0,1000.0,500.0};
+  double x0 = bisection_solve(&my_funct,y0,NULL,x);
+  printf("x0,y0 = %lf %lf.\n",x0,y0);
+  printf("my_funct(%lf) = %lf.\n",x0,my_funct(x0,NULL));
+  return 0.0;
+}
